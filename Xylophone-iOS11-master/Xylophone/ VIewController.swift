@@ -9,7 +9,8 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController{
+// less included the delegate, but it works w/o
+class ViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	var player:AVAudioPlayer?
 	
@@ -27,7 +28,8 @@ class ViewController: UIViewController{
 			
 			player.prepareToPlay()
 			player.play()
-		} catch let error as NSError {
+		}
+		catch let error as NSError {
 			print(error.description)
 		}
 	}
