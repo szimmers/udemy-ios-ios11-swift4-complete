@@ -14,6 +14,8 @@ class ViewController: UIViewController {
 	let allQuestions = QuestionBank()
 	var pickedAnswer:Bool = false
 	var questionNumber:Int = 0
+	var score:Int = 0
+	var numQuestions:Int = 0
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -23,6 +25,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		numQuestions = allQuestions.list.count
+		
+		updateUI()
 		nextQuestion()
     }
 
@@ -39,15 +44,24 @@ class ViewController: UIViewController {
 		questionNumber += 1
 		nextQuestion()
     }
-    
-    
+	
+	func isQuestionWithinRange(num:Int, total:Int) -> Bool {
+		return num < total
+	}
+	
     func updateUI() {
+		scoreLabel.text = "Score: \(score)"
+		
+		if isQuestionWithinRange(num: questionNumber+1, total: numQuestions+1) {
+			progressLabel.text = "\(questionNumber+1) / \(numQuestions)"
+		}
     }
     
 
     func nextQuestion() {
-		if questionNumber < allQuestions.list.count {
+		if isQuestionWithinRange(num: questionNumber, total: numQuestions) {
 			questionLabel.text = allQuestions.list[questionNumber].questionText
+			updateUI()
 		}
 		else {
 			let alert = UIAlertController(title: "You're done", message: "You've finished the quiz. Do you want to start over?", preferredStyle: .alert)
@@ -66,16 +80,17 @@ class ViewController: UIViewController {
 		let correctAnswer = allQuestions.list[questionNumber].answer
 		
 		if correctAnswer == pickedAnswer {
-			print("good")
+			score += 1
 		}
-		else {
-			print("bad")
-		}
+
+		updateUI()
     }
     
     
     func startOver() {
 		questionNumber = 0
+		score = 0
+		updateUI()
 		nextQuestion()
     }
     
