@@ -56,7 +56,7 @@ class ViewController: UIViewController {
 			progressLabel.text = "\(questionNumber+1) / \(numQuestions)"
 		}
 		
-		progressBar.frame.size.width = (view.frame.size.width) / CGFloat(numQuestions) * CGFloat(questionNumber + 1)
+		progressBar.frame.size.width = (view.frame.size.width / CGFloat(numQuestions)) * CGFloat(questionNumber + 1)
     }
     
 
