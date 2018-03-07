@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     //Place your instance variables here
 	let allQuestions = QuestionBank()
 	var pickedAnswer:Bool = false
+	var questionNumber:Int = 0
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -22,9 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		let q1 = allQuestions.list[0]
-		questionLabel.text = q1.questionText
-        
+		nextQuestion()
     }
 
 
@@ -37,21 +36,29 @@ class ViewController: UIViewController {
 		}
 		
 		checkAnswer()
+		questionNumber += 1
+		nextQuestion()
     }
     
     
     func updateUI() {
-      
     }
     
 
     func nextQuestion() {
-        
+		if questionNumber < allQuestions.list.count {
+			questionLabel.text = allQuestions.list[questionNumber].questionText
+		}
+		else {
+			print("----------------------------")
+			questionNumber = 0
+			questionLabel.text = allQuestions.list[questionNumber].questionText
+		}
     }
     
     
     func checkAnswer() {
-		let correctAnswer = allQuestions.list[0].answer
+		let correctAnswer = allQuestions.list[questionNumber].answer
 		
 		if correctAnswer == pickedAnswer {
 			print("good")
