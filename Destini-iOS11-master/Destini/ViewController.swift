@@ -115,14 +115,6 @@ class ViewController: UIViewController {
 		return storyNum - 1
 	}
 	
-	func hasOptions(storyNum: Int) -> Bool {
-		if storyNum > 3 {
-			return false
-		}
-		
-		return true
-	}
-	
 	func startOver() {
 		bottomButton.isHidden = false
 		currentStoryNum = 1
@@ -133,7 +125,7 @@ class ViewController: UIViewController {
 		let storyIndex = convertStoryNumToStoryIndex(storyNum: storyNum)
 		storyTextView.text = stories[storyIndex]
 
-		if hasOptions(storyNum: storyNum) {
+		if !atTerminalStory {
 			topButton.setTitle(answersA[storyIndex], for: .normal)
 			bottomButton.setTitle(answersB[storyIndex], for: .normal)
 		}
