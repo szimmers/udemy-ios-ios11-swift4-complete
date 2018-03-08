@@ -46,18 +46,28 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02v-f0-KV9" userLabel="Middle Container">
                                 <rect key="frame" x="40" y="234" width="240" height="100"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dice1" translatesAutoresizingMaskIntoConstraints="NO" id="JzX-BD-qbD">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dice1" translatesAutoresizingMaskIntoConstraints="NO" id="JzX-BD-qbD">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="Go3-I3-yT1"/>
+                                            <constraint firstAttribute="width" constant="100" id="dre-6f-IAt"/>
+                                        </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dice3" translatesAutoresizingMaskIntoConstraints="NO" id="HCe-LZ-QuJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dice3" translatesAutoresizingMaskIntoConstraints="NO" id="HCe-LZ-QuJ">
                                         <rect key="frame" x="140" y="0.0" width="100" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="aok-GH-RXR"/>
+                                            <constraint firstAttribute="width" constant="100" id="chK-Rp-F83"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="JzX-BD-qbD" firstAttribute="leading" secondItem="02v-f0-KV9" secondAttribute="leading" id="FUK-B3-rNo"/>
+                                    <constraint firstAttribute="trailing" secondItem="HCe-LZ-QuJ" secondAttribute="trailing" id="Ko7-Bn-RAo"/>
                                     <constraint firstAttribute="height" constant="100" id="Nho-Kg-Mox"/>
+                                    <constraint firstItem="HCe-LZ-QuJ" firstAttribute="top" secondItem="02v-f0-KV9" secondAttribute="top" id="YpT-eB-b68"/>
+                                    <constraint firstItem="JzX-BD-qbD" firstAttribute="top" secondItem="02v-f0-KV9" secondAttribute="top" id="anM-ke-4QE"/>
                                     <constraint firstAttribute="width" constant="240" id="mMz-tL-CFY"/>
                                 </constraints>
                             </view>
