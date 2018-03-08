@@ -69,13 +69,14 @@ class ViewController: UIViewController {
 			bottomButtonPressed = true
 		}
 		
-		advanceStory(storyNum: currentStoryNum, optionASelected: topButtonPressed, optionBSelected: bottomButtonPressed)
+		if atTerminalStory && topButtonPressed {
+			startOver()
+		}
+		else {
+			advanceStory(storyNum: currentStoryNum, optionASelected: topButtonPressed, optionBSelected: bottomButtonPressed)
+		}
+
 		updateViewForStory(storyNum: currentStoryNum)
-        // TODO Step 4: Write an IF-Statement to update the views
-                
-        // TODO Step 6: Modify the IF-Statement to complete the story
-        
-    
     }
 	
 	func advanceStory(storyNum:Int, optionASelected: Bool, optionBSelected: Bool) {
@@ -93,6 +94,7 @@ class ViewController: UIViewController {
 			}
 			else {
 				currentStoryNum = 4
+				atTerminalStory = true
 			}
 		}
 		else if storyNum == 3 {
@@ -102,6 +104,7 @@ class ViewController: UIViewController {
 			else {
 				currentStoryNum = 5
 			}
+			atTerminalStory = true
 		}
 		else if (storyNum == 4) || (storyNum == 5) || (storyNum == 6) {
 			atTerminalStory = true
@@ -119,9 +122,14 @@ class ViewController: UIViewController {
 		
 		return true
 	}
+	
+	func startOver() {
+		bottomButton.isHidden = false
+		currentStoryNum = 1
+		atTerminalStory = false
+	}
 
 	func updateViewForStory(storyNum:Int) {
-		print(storyNum)
 		let storyIndex = convertStoryNumToStoryIndex(storyNum: storyNum)
 		storyTextView.text = stories[storyIndex]
 
@@ -130,7 +138,7 @@ class ViewController: UIViewController {
 			bottomButton.setTitle(answersB[storyIndex], for: .normal)
 		}
 		else {
-			topButton.isHidden = true
+			topButton.setTitle("Start Over", for: .normal)
 			bottomButton.isHidden = true
 		}
 	}
