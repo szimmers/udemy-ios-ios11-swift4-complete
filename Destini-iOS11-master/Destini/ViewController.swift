@@ -35,30 +35,105 @@ class ViewController: UIViewController {
     @IBOutlet weak var storyTextView: UILabel!
     
     // TODO Step 5: Initialise instance variables here
-    
-    
-    
-    
+	
+	var topButtonPressed:Bool = false
+	var bottomButtonPressed:Bool = false
+	var currentStoryNum:Int = 1
+	var atTerminalStory:Bool = false
+	
+	var stories = [String]()
+	var answersA = [String]()
+	var answersB = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         // TODO Step 3: Set the text for the storyTextView, topButton, bottomButton, and to T1_Story, T1_Ans1, and T1_Ans2
+		stories = [story1, story2, story3, story4, story5, story6]
+		answersA = [answer1a, answer2a, answer3a]
+		answersB = [answer1b, answer2b, answer3b]
+		
+		updateViewForStory(storyNum: currentStoryNum)
         
     }
 
     
     // User presses one of the buttons
     @IBAction func buttonPressed(_ sender: UIButton) {
-    
+		if sender.tag == 1 {
+			topButtonPressed = true
+			bottomButtonPressed = false
+		}
+		else if sender.tag == 2 {
+			topButtonPressed = false
+			bottomButtonPressed = true
+		}
+		
+		advanceStory(storyNum: currentStoryNum, optionASelected: topButtonPressed, optionBSelected: bottomButtonPressed)
+		updateViewForStory(storyNum: currentStoryNum)
         // TODO Step 4: Write an IF-Statement to update the views
                 
         // TODO Step 6: Modify the IF-Statement to complete the story
         
     
     }
-    
+	
+	func advanceStory(storyNum:Int, optionASelected: Bool, optionBSelected: Bool) {
+		if storyNum == 1 {
+			if optionASelected {
+				currentStoryNum = 3
+			}
+			else {
+				currentStoryNum = 2
+			}
+		}
+		else if storyNum == 2 {
+			if optionASelected {
+				currentStoryNum = 3
+			}
+			else {
+				currentStoryNum = 4
+			}
+		}
+		else if storyNum == 3 {
+			if optionASelected {
+				currentStoryNum = 6
+			}
+			else {
+				currentStoryNum = 5
+			}
+		}
+		else if (storyNum == 4) || (storyNum == 5) || (storyNum == 6) {
+			atTerminalStory = true
+		}
+	}
+	
+	func convertStoryNumToStoryIndex(storyNum:Int) -> Int {
+		return storyNum - 1
+	}
+	
+	func hasOptions(storyNum: Int) -> Bool {
+		if storyNum > 3 {
+			return false
+		}
+		
+		return true
+	}
 
+	func updateViewForStory(storyNum:Int) {
+		print(storyNum)
+		let storyIndex = convertStoryNumToStoryIndex(storyNum: storyNum)
+		storyTextView.text = stories[storyIndex]
+
+		if hasOptions(storyNum: storyNum) {
+			topButton.setTitle(answersA[storyIndex], for: .normal)
+			bottomButton.setTitle(answersB[storyIndex], for: .normal)
+		}
+		else {
+			topButton.isHidden = true
+			bottomButton.isHidden = true
+		}
+	}
 
 
 }
