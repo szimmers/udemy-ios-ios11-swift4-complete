@@ -17,8 +17,8 @@ class ViewController: UIViewController {
 	var score:Int = 0
 	var numQuestions:Int = 0
 	
-	let correctIndicators = ["Yep", "Good", "You got it!", "Correct", "Nice job", "Yes!", "Boom."]
-	let incorrectIndicators = ["Nope", "Bummer", "That couldn't be more wrong", "Just... no.", "Fail.", "Seriously?", "omg", "You should stop.", "You get a lot of these wrong."]
+	let correctIndicators = ["Yep", "Good", "You got it!", "Correct", "Nice job", "Yes!", "Boom.", "Good", "Nice job"]
+	let incorrectIndicators = ["Nope", "Bummer", "That couldn't be more wrong", "Wrong", "No", "Just... no.", "Fail.", "Wrong", "No", "Seriously?", "omg", "Wrong", "No", "Wrong", "No", "You should stop.", "Wrong", "No", "You get a lot of these wrong.", "Wrong", "No", "Good! Oh, wait, bad."]
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
