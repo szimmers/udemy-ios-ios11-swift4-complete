@@ -16,6 +16,9 @@ class ViewController: UIViewController {
 	var questionNumber:Int = 0
 	var score:Int = 0
 	var numQuestions:Int = 0
+	
+	let correctIndicators = ["Yep", "Good", "You got it!", "Correct", "Nice job", "Yes!", "Boom."]
+	let incorrectIndicators = ["Nope", "Bummer", "That couldn't be more wrong", "Just... no.", "Fail.", "Seriously?", "omg", "You should stop.", "You get a lot of these wrong."]
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -83,10 +86,17 @@ class ViewController: UIViewController {
 		
 		if correctAnswer == pickedAnswer {
 			score += 1
-			ProgressHUD.showSuccess("boom")
+			
+			let randomIndex = Int(arc4random_uniform(UInt32(correctIndicators.count)))
+			let text = correctIndicators[randomIndex]
+
+			ProgressHUD.showSuccess(text)
 		}
 		else {
-			ProgressHUD.showError("nope")
+			let randomIndex = Int(arc4random_uniform(UInt32(incorrectIndicators.count)))
+			let text = incorrectIndicators[randomIndex]
+
+			ProgressHUD.showError(text)
 		}
 
 		updateUI()
