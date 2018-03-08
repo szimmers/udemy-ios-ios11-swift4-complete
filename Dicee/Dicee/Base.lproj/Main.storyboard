@@ -45,7 +45,6 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="JzX-BD-qbD" firstAttribute="leading" secondItem="02v-f0-KV9" secondAttribute="leading" id="FUK-B3-rNo"/>
                                     <constraint firstAttribute="trailing" secondItem="HCe-LZ-QuJ" secondAttribute="trailing" id="Ko7-Bn-RAo"/>
@@ -66,7 +65,6 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="r89-eB-gKv" firstAttribute="centerY" secondItem="oAk-nS-r9M" secondAttribute="centerY" id="BDW-YY-aD0"/>
                                     <constraint firstItem="r89-eB-gKv" firstAttribute="centerX" secondItem="oAk-nS-r9M" secondAttribute="centerX" id="F1N-JV-aA1"/>
@@ -91,7 +89,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="QhL-nZ-Gz1" firstAttribute="centerY" secondItem="50b-rg-GWL" secondAttribute="centerY" id="0vm-B2-nZT"/>
                                     <constraint firstItem="QhL-nZ-Gz1" firstAttribute="centerX" secondItem="50b-rg-GWL" secondAttribute="centerX" id="y56-Wa-4P5"/>
