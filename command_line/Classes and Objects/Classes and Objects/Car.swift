@@ -16,7 +16,7 @@ enum CarType {
 
 class Car {
 	//var colour = "Black"
-	var colour
+	var colour:String
 	var numSeats = 5
 	var bodyType:CarType = .Coupe
 	
