@@ -15,12 +15,16 @@ enum CarType {
 }
 
 class Car {
-	//var colour = "Black"
-	var colour:String
+	var colour = "Black"
 	var numSeats = 5
 	var bodyType:CarType = .Coupe
 	
-	init(customerChosenColour:String = "Black") {
+	init() {
+		
+	}
+	
+	convenience init(customerChosenColour:String) {
+		self.init()
 		colour = customerChosenColour
 	}
 }

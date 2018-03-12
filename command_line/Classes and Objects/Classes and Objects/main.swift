@@ -8,7 +8,8 @@
 
 import Foundation
 
-//let myCar = Car(customerChosenColour: "Green")
-let myCar = Car()
+let car1 = Car()
+let car2 = Car(customerChosenColour: "Green")
 
-print(myCar.colour)
+print(car1.colour)
+print(car2.colour)
