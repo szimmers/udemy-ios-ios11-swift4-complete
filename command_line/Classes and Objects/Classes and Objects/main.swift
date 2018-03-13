@@ -10,5 +10,7 @@ import Foundation
 
 let car1 = Car()
 let car2 = Car(customerChosenColour: "Green")
+let car3 = SelfDrivingCar()
 
-car1.drive()
+car3.numSeats = 2
+car3.drive()
