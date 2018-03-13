@@ -9,11 +9,18 @@
 import Foundation
 
 class SelfDrivingCar:Car {
-	var destination:String = "Timville"
-
+	// value might be nil
+	var destination:String?
+	
 	override func drive() {
 		super.drive()
-
-		print("heading to \(destination)")
+		
+		// optional binding. no need to unwrap with !
+		if let userSetDestination = destination {
+			print("heading to \(userSetDestination)")
+		}
+		else {
+			print("wandering aimlessly")
+		}
 	}
 }
