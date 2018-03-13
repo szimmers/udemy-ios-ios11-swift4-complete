@@ -83,10 +83,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 		if location.horizontalAccuracy > 0 {
 			locationManager.stopUpdatingLocation()
 			
-			let lat = location.coordinate.latitude
-			let lng = location.coordinate.longitude
+			let lat = String(location.coordinate.latitude)
+			let lng = String(location.coordinate.longitude)
 
-			print(lat, lng)
+			let params:[String:String] = ["appid" : APP_ID, "lat" : lat, "lon" : lng]
 		}
 	}
     
