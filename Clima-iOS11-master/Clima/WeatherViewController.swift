@@ -30,19 +30,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         //TODO:Set up the location manager here.
 		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
 		locationManager.requestWhenInUseAuthorization()
-    
-        
-        
+		
+		locationManager.startUpdatingLocation()
     }
-    
-    
-    
+
     //MARK: - Networking
     /***************************************************************/
     
@@ -80,15 +76,26 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     
     //Write the didUpdateLocations method here:
-    
-    
+	
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		let location = locations[locations.count - 1]
+		
+		if location.horizontalAccuracy > 0 {
+			locationManager.stopUpdatingLocation()
+			
+			let lat = location.coordinate.latitude
+			let lng = location.coordinate.longitude
+
+			print(lat, lng)
+		}
+	}
     
     //Write the didFailWithError method here:
-    
-    
-    
+	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+		print(error)
+		cityLabel.text = "Location Unavailable"
+	}
 
-    
     //MARK: - Change City Delegate methods
     /***************************************************************/
     
