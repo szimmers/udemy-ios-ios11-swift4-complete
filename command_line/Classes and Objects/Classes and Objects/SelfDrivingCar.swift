@@ -9,9 +9,11 @@
 import Foundation
 
 class SelfDrivingCar:Car {
+	var destination:String = "Timville"
+
 	override func drive() {
 		super.drive()
 
-		print("self vroom")
+		print("heading to \(destination)")
 	}
 }
