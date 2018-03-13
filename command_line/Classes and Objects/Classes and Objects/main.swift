@@ -11,5 +11,4 @@ import Foundation
 let car1 = Car()
 let car2 = Car(customerChosenColour: "Green")
 
-print(car1.colour)
-print(car2.colour)
+car1.drive()
