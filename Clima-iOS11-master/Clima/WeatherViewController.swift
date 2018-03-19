@@ -21,6 +21,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     //TODO: Declare instance variables here
 	let locationManager = CLLocationManager()
+	let weatherDataModel = WeatherDataModel()
     
 
     
@@ -48,22 +49,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
 
 	func getWeatherData(url: String, parameters: [String:String]) {
-		/*
-		let lat:String = String(parameters["lat"])
-		let lng:String! = String(parameters["lon"])
-
-		let requestUrl = "\(url)?lat=\(lat)&lon=\(lng)&appid=\(APP_ID)"
-		print(requestUrl)
-*/
 
 		Alamofire.request(url, method: .get, parameters: parameters).responseJSON { response in
 			if response.result.isSuccess {
 				let weatherData:JSON = JSON(response.result.value!)
-				print(weatherData)
-				
-				if let temperature = weatherData[0]["main"]["temp"].string {
-					self.temperatureLabel.text = temperature
-				}
+				self.updateWeatherData(data: weatherData)
 			}
 			else {
 				print("error: \(String(describing: response.result.error))")
@@ -92,7 +82,16 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
    
     
     //Write the updateWeatherData method here:
-    
+	
+	func updateWeatherData(data:JSON) {
+		if let temperature = data["main"]["temp"].double {
+			weatherDataModel.temperature = Int(temperature - 273.15)
+			//self.temperatureLabel.text = temperature
+		}
+		else {
+			print("nope")
+		}
+	}
 
     
     
