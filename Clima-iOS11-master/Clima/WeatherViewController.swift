@@ -59,20 +59,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 				print("error: \(String(describing: response.result.error))")
 				self.showError(errorText: "Could not fetch weather")
 			}
-			
-			/*
-			print("Request: \(String(describing: response.request))")   // original url request
-			print("Response: \(String(describing: response.response))") // http url response
-			print("Result: \(response.result)")                         // response serialization result
-			
-			if let json = response.result.value {
-				print("JSON: \(json)") // serialized json response
-			}
-			
-			if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-				print("Data: \(utf8Text)") // original server data as UTF8 string
-			}
-*/
 		}
 	}
 
@@ -90,16 +76,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 			weatherDataModel.condition = data["weather"][0]["id"].intValue
 			weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
 
-			//self.temperatureLabel.text = temperature
+			updateUIWithWeatherData()
 		}
 		else {
 			showError(errorText: "Weather Unavailable")
 		}
 	}
 
-    
-    
-    
     //MARK: - UI Updates
     /***************************************************************/
 	
@@ -108,11 +91,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 	}
     
     //Write the updateUIWithWeatherData method here:
-    
-    
-    
-    
-    
+	func updateUIWithWeatherData() {
+		cityLabel.text = weatherDataModel.city
+		temperatureLabel.text = String(weatherDataModel.temperature)
+		weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+	}
+
     
     //MARK: - Location Manager Delegate Methods
     /***************************************************************/
