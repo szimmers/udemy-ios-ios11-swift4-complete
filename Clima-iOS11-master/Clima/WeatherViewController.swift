@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import Alamofire
+import SwiftyJSON
 
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -45,10 +47,45 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     //Write the getWeatherData method here:
     
 
-    
-    
-    
-    
+	func getWeatherData(url: String, parameters: [String:String]) {
+		/*
+		let lat:String = String(parameters["lat"])
+		let lng:String! = String(parameters["lon"])
+
+		let requestUrl = "\(url)?lat=\(lat)&lon=\(lng)&appid=\(APP_ID)"
+		print(requestUrl)
+*/
+
+		Alamofire.request(url, method: .get, parameters: parameters).responseJSON { response in
+			if response.result.isSuccess {
+				let weatherData:JSON = JSON(response.result.value!)
+				print(weatherData)
+				
+				if let temperature = weatherData[0]["main"]["temp"].string {
+					self.temperatureLabel.text = temperature
+				}
+			}
+			else {
+				print("error: \(String(describing: response.result.error))")
+				self.cityLabel.text = "Could not fetch weather"
+			}
+			
+			/*
+			print("Request: \(String(describing: response.request))")   // original url request
+			print("Response: \(String(describing: response.response))") // http url response
+			print("Result: \(response.result)")                         // response serialization result
+			
+			if let json = response.result.value {
+				print("JSON: \(json)") // serialized json response
+			}
+			
+			if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+				print("Data: \(utf8Text)") // original server data as UTF8 string
+			}
+*/
+		}
+	}
+
     
     //MARK: - JSON Parsing
     /***************************************************************/
@@ -87,6 +124,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 			let lng = String(location.coordinate.longitude)
 
 			let params:[String:String] = ["appid" : APP_ID, "lat" : lat, "lon" : lng]
+			
+			getWeatherData(url: WEATHER_URL, parameters: params)
 		}
 	}
     
