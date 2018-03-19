@@ -57,7 +57,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 			}
 			else {
 				print("error: \(String(describing: response.result.error))")
-				self.cityLabel.text = "Could not fetch weather"
+				self.showError(errorText: "Could not fetch weather")
 			}
 			
 			/*
@@ -86,10 +86,14 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 	func updateWeatherData(data:JSON) {
 		if let temperature = data["main"]["temp"].double {
 			weatherDataModel.temperature = Int(temperature - 273.15)
+			weatherDataModel.city = data["city"].stringValue
+			weatherDataModel.condition = data["weather"][0]["id"].intValue
+			weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+
 			//self.temperatureLabel.text = temperature
 		}
 		else {
-			print("nope")
+			showError(errorText: "Weather Unavailable")
 		}
 	}
 
@@ -98,7 +102,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     //MARK: - UI Updates
     /***************************************************************/
-    
+	
+	func showError(errorText:String) {
+		cityLabel.text = errorText
+	}
     
     //Write the updateUIWithWeatherData method here:
     
@@ -131,7 +138,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     //Write the didFailWithError method here:
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 		print(error)
-		cityLabel.text = "Location Unavailable"
+		showError(errorText: "Location Unavailable")
 	}
 
     //MARK: - Change City Delegate methods
